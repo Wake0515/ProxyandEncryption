@@ -1,0 +1,43 @@
+<!--
+    This is the front-end page for password acquisition
+-->
+<html>
+    <script src="{{ url_for('static', filename='js/lib/base64.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/webauthn.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <title>Obtain the Password</title>
+    <body>
+        <body background="{{ url_for('static', filename='timg.jpg') }}" style=" background-repeat:no-repeat ;background-size:100% 100%;
+background-attachment: fixed;">
+        <h1><center>Fingerprint Verification to Obtain the Password</center></h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flash">{{ message }}</li>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% if current_user.is_authenticated %}
+        <p>Logged in as {{ current_user.username }}, your one-time password is {{ password }}, and the server address is
+            127.0.0.1 | <a href="{{ url_for('logout') }}">Logout</a></p>
+        {% else %}
+            <h2><font color="FF0066"><center>Register</center></font></h2>
+            <form id="register-form" name="register" method="get">
+                <label for="register_username"><center>Username:</center></label>
+                <div style="text-align:center;vertical-align:middel;"><input name="register_username"></input></div>
+                <label for="register_display_name"><center>Used Name:</center></label>
+                <div style="text-align:center;vertical-align:middel;"><input name="register_display_name"></input></div>
+                <div style="text-align:center;vertical-align:middel;"><button id="register" type="submit">Fingerprint Verification and Registration</button></div>
+            </form>
+
+            <hr></hr>
+
+            <h2><font color="FF0066"><center>Login</center></font></h2>
+            <form id="login-form" name="login" method="get">
+                <label for="login_username"><center>Username:</center></label>
+                <div style="text-align:center;vertical-align:middel;"><input name="login_username"></input></div>
+                <div style="text-align:center;vertical-align:middel;"><button id="login" type="submit">Fingerprint Verification and Login</button></div>
+            </form>
+        {% endif %}
+    </body>
+</html>

@@ -1,0 +1,5 @@
+python server.py -s 127.0.0.1:8489 -p password -e AES-GCM
+python client.py -c 127.0.0.1:8488 -s 127.0.0.1:8489 -p password -e AES-GCM
+
+python server.py -s 127.0.0.1:8489 -p password -e Chacha20Poly1305
+python client.py -c 127.0.0.1:8488 -s 127.0.0.1:8489 -p password -e Chacha20Poly1305

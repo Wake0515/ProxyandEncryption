@@ -1,0 +1,1 @@
+python server.py -s 127.0.0.1:8489 -p password -e AES-GCM
